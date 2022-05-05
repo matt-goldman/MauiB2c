@@ -22,6 +22,13 @@
 
   <Applications>
     <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="$targetentrypoint$">
+	    <Extensions>
+		    <uap:Extension Category="windows.protocol">
+			    <uap:Protocol Name="goldieb2cclient">
+				    <uap:DisplayName>Auth</uap:DisplayName>
+			    </uap:Protocol>
+		    </uap:Extension>
+	    </Extensions>
       <uap:VisualElements />
     </Application>
   </Applications>

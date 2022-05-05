@@ -1,20 +1,16 @@
-﻿namespace MauiClient;
+﻿using MauiClient.ViewModels;
+
+namespace MauiClient;
 
 public partial class MainPage : ContentPage
 {
-	int count = 0;
+    private readonly MainViewModel _viewModel;
 
-	public MainPage()
+	public MainPage(MainViewModel viewModel)
 	{
 		InitializeComponent();
-	}
-
-	private void OnCounterClicked(object sender, EventArgs e)
-	{
-		count++;
-		CounterLabel.Text = $"Current count: {count}";
-
-		SemanticScreenReader.Announce(CounterLabel.Text);
-	}
+        _viewModel = viewModel;
+        BindingContext = _viewModel;
+    }
 }
 

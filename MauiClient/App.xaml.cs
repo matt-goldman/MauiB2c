@@ -2,10 +2,12 @@
 
 public partial class App : Application
 {
-	public App()
+    public static object ParentWindow { get; set; }
+
+    public App(MainPage mainPage)
 	{
 		InitializeComponent();
 
-		MainPage = new MainPage();
+		MainPage = mainPage;
 	}
 }
