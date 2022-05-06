@@ -48,7 +48,12 @@
 	<ItemGroup>
 	  <PackageReference Include="CommunityToolkit.Maui" Version="1.0.0-rc2" />
 	  <PackageReference Include="CommunityToolkit.Mvvm" Version="8.0.0-preview3" />
+	  <PackageReference Include="Microsoft.Extensions.Http" Version="7.0.0-preview.3.22175.4" />
 	  <PackageReference Include="Microsoft.Identity.Client" Version="4.43.2" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\Shared\Shared.csproj" />
 	</ItemGroup>
 
 </Project>

@@ -25,7 +25,7 @@ public class AuthService : IAuthService
         try
         {
             var signInBuilder = _publicClient.AcquireTokenInteractive(Constants.B2cScopes)
-                    .WithParentActivityOrWindow(App.ParentWindow);
+                .WithParentActivityOrWindow(App.ParentWindow);
 
             if (DeviceInfo.Platform == DevicePlatform.Android || DeviceInfo.Platform == DevicePlatform.iOS)
             {

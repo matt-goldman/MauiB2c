@@ -20,10 +20,57 @@
                     IsVisible="{Binding IsSignedIn, Converter={StaticResource InvertedBoolConverter}}"
                     Command="{Binding SignInCommand}"/>
 
-            <HorizontalStackLayout IsVisible="{Binding IsSignedIn}">
-                <Button Text="Fetch data"/>
+            <HorizontalStackLayout IsVisible="{Binding IsSignedIn}"
+                                   Spacing="10">
+                <Button Text="Fetch data"
+                        Command="{Binding FetchDataCommand}"/>
                 <Button Text="Sign out"/>
             </HorizontalStackLayout>
+
+            <CollectionView ItemsSource="{Binding Forecasts}"
+                            HorizontalOptions="Center"
+                            VerticalOptions="FillAndExpand">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid RowDefinitions="2*,1*,2*"
+                              ColumnDefinitions="3*,1*,3*"
+                              Margin="5,10">
+                            <Label Grid.Row="0"
+                                   Grid.ColumnSpan="3"
+                                   FontSize="Large"
+                                   HorizontalOptions="CenterAndExpand"
+                                   HorizontalTextAlignment="Center"
+                                   VerticalOptions="Center"
+                                   Text="{Binding Date, StringFormat='{0: dd MMM yyyy}'}"/>
+
+                            <Label Grid.Row="1"
+                                   Grid.Column="0"
+                                   HorizontalOptions="CenterAndExpand"
+                                   HorizontalTextAlignment="Center"
+                                   FontSize="Large"
+                                   Text="{Binding TemperatureC, StringFormat='{0}° C'}"/>
+                            <Label Grid.Row="1"
+                                   Grid.Column="1"
+                                   HorizontalOptions="CenterAndExpand"
+                                   HorizontalTextAlignment="Center"
+                                   FontSize="Large"
+                                   Text="/"/>
+                            <Label Grid.Row="1"
+                                   Grid.Column="2"
+                                   HorizontalOptions="CenterAndExpand"
+                                   HorizontalTextAlignment="Center"
+                                   FontSize="Large"
+                                   Text="{Binding TemperatureF, StringFormat='{0}° F'}"/>
+
+                            <Label Grid.Row="2"
+                                   Grid.ColumnSpan="3"
+                                   Text="{Binding Summary}"
+                                   HorizontalTextAlignment="Center"
+                                   LineBreakMode="WordWrap"/>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
 
         </VerticalStackLayout>
     </ScrollView>

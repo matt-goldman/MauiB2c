@@ -1,4 +1,5 @@
 ﻿using CommunityToolkit.Maui;
+using MauiClient.Helpers;
 using MauiClient.Services;
 using MauiClient.ViewModels;
 
@@ -19,6 +20,14 @@ public static class MauiProgram
 			});
 
 		builder.Services.AddSingleton<IAuthService, AuthService>();
+		builder.Services.AddSingleton<AuthHandler>();
+
+		builder.Services.AddHttpClient(Constants.HttpClientName, client => 
+		{ 
+			client.BaseAddress = new Uri("https://6e95-159-196-124-207.ngrok.io");
+		})
+			.AddHttpMessageHandler((s) => s.GetService<AuthHandler>());
+
 
 		builder.Services.AddTransient<MainPage>();
 
