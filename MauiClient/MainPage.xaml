@@ -24,53 +24,62 @@
                                    Spacing="10">
                 <Button Text="Fetch data"
                         Command="{Binding FetchDataCommand}"/>
-                <Button Text="Sign out"/>
+                <Button Text="Sign out"
+                        Command="{Binding SignOutCommand}"/>
             </HorizontalStackLayout>
 
-            <CollectionView ItemsSource="{Binding Forecasts}"
+            <Grid>
+                <CollectionView ItemsSource="{Binding Forecasts}"
                             HorizontalOptions="Center"
                             VerticalOptions="FillAndExpand">
-                <CollectionView.ItemTemplate>
-                    <DataTemplate>
-                        <Grid RowDefinitions="2*,1*,2*"
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid RowDefinitions="2*,1*,2*"
                               ColumnDefinitions="3*,1*,3*"
                               Margin="5,10">
-                            <Label Grid.Row="0"
+                                <Label Grid.Row="0"
                                    Grid.ColumnSpan="3"
-                                   FontSize="Large"
+                                   FontSize="Title"
                                    HorizontalOptions="CenterAndExpand"
                                    HorizontalTextAlignment="Center"
                                    VerticalOptions="Center"
                                    Text="{Binding Date, StringFormat='{0: dd MMM yyyy}'}"/>
 
-                            <Label Grid.Row="1"
+                                <Label Grid.Row="1"
                                    Grid.Column="0"
-                                   HorizontalOptions="CenterAndExpand"
+                                   HorizontalOptions="EndAndExpand"
                                    HorizontalTextAlignment="Center"
                                    FontSize="Large"
                                    Text="{Binding TemperatureC, StringFormat='{0}° C'}"/>
-                            <Label Grid.Row="1"
+                                <Label Grid.Row="1"
                                    Grid.Column="1"
                                    HorizontalOptions="CenterAndExpand"
                                    HorizontalTextAlignment="Center"
                                    FontSize="Large"
                                    Text="/"/>
-                            <Label Grid.Row="1"
+                                <Label Grid.Row="1"
                                    Grid.Column="2"
-                                   HorizontalOptions="CenterAndExpand"
+                                   HorizontalOptions="StartAndExpand"
                                    HorizontalTextAlignment="Center"
                                    FontSize="Large"
                                    Text="{Binding TemperatureF, StringFormat='{0}° F'}"/>
 
-                            <Label Grid.Row="2"
+                                <Label Grid.Row="2"
                                    Grid.ColumnSpan="3"
                                    Text="{Binding Summary}"
                                    HorizontalTextAlignment="Center"
                                    LineBreakMode="WordWrap"/>
-                        </Grid>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
+                            </Grid>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+
+                <ActivityIndicator IsEnabled="True"
+                                   IsRunning="True"
+                                   HorizontalOptions="CenterAndExpand"
+                                   VerticalOptions="CenterAndExpand"
+                                   IsVisible="{Binding IsLoading}"/>
+            </Grid>
 
         </VerticalStackLayout>
     </ScrollView>

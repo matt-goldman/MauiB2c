@@ -22,6 +22,9 @@ public partial class MainViewModel
     [ObservableProperty]
     bool isSignedIn;
 
+    [ObservableProperty]
+    bool isLoading;
+
     public MainViewModel(IAuthService auth, IHttpClientFactory clientFactory)
     {
         _auth = auth;
@@ -32,26 +35,36 @@ public partial class MainViewModel
     [ICommand]
     private async Task SignIn()
     {
+        IsLoading = true;
+
         await _auth.SignInAsync();
 
         IsSignedIn = _auth.IsAuthenticated;
 
         UserName = _auth.UserName;
+
+        IsLoading = false;
     }
 
     [ICommand]
     private async Task SignOut()
     {
+        IsLoading = true;
+
         await _auth.SignOutAsync();
 
         IsSignedIn = _auth.IsAuthenticated;
 
         UserName = _auth.UserName;
+
+        IsLoading = false;
     }
 
     [ICommand]
     private async Task FetchData()
     {
+        IsLoading = true;
+
         var weatherData = await _httpClient.GetFromJsonAsync<WeatherForecast[]>("WeatherForecast");
 
         Forecasts.Clear();
@@ -60,5 +73,7 @@ public partial class MainViewModel
         {
             Forecasts.Add(forecast);
         }
+
+        IsLoading = false;
     }
 }
