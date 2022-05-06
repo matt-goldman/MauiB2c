@@ -57,6 +57,8 @@ public partial class MainViewModel
 
         UserName = _auth.UserName;
 
+        Forecasts.Clear();
+
         IsLoading = false;
     }
 
